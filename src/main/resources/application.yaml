@@ -1,0 +1,25 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://dpg-cn8takf109ks739r20o0-a.oregon-postgres.render.com:5432/school_site
+    username: ${env.USERNAME}
+    password: ${env.PASSWORD}
+    driver-class-name: org.postgresql.Driver
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+
+file:
+  upload:
+    directory: /src/main/resources/static
+
+# File Upload Configuration
+servlet:
+  multipart:
+    max-file-size: 100MB
+    max-request-size: 100MB
+
+
