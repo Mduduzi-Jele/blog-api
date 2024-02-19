@@ -1,0 +1,21 @@
+services:
+  # A Docker web service
+  - type: web
+    name: blog-api
+    runtime: docker
+    repo: https://github.com/Mduduzi-Jele/blog-api.git
+    region: oregon
+    plan: free
+    branch: main
+    rootDir: blog-api
+    dockerCommand: ./start.sh
+    numInstances: 1
+    healthCheckPath: /
+    envVars:
+      - key: USER_NAME
+        value: root
+      - key: DB_PASSWORD
+        value: wTE2lbtknl9e6Sq6AZu9HuCUkjQqSBn7
+        fromDatabase:
+          name: school_site
+          property: postgres://root:wTE2lbtknl9e6Sq6AZu9HuCUkjQqSBn7@dpg-cn8takf109ks739r20o0-a/school_site
