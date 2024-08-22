@@ -69,10 +69,15 @@ public class PostController {
                            @RequestParam("likes") Integer likes,
                            @PathVariable Long user_id) throws IOException {
 
-        String uploadDirectory = System.getProperty("user.dir") + File.separator + "src/main/resources/static/";
-        Path imagePath = Paths.get(uploadDirectory, file.getOriginalFilename());
-        Files.write(imagePath, file.getBytes());
+        String uploadDirectory = "/tmp/uploads/";
+        Path uploadPath = Paths.get(uploadDirectory);
 
+        // Ensure the directory exists
+        if(!Files.exists(uploadPath))
+            Files.createDirectories(uploadPath);
+
+        Path imagePath = uploadPath.resolve(file.getOriginalFilename());
+        Files.write(imagePath, file.getBytes());
 
         Post myPost = new Post();
         myPost.setTitle(title);
