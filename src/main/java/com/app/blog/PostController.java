@@ -134,7 +134,7 @@ public class PostController {
 
     @GetMapping("/images/{id}")
     public ResponseEntity<byte[]> getImage(@PathVariable("id") long id) {
-        String uploadDirectory = System.getProperty("user.dir") + File.separator + "src/main/resources/static/";
+        String uploadDirectory = "/tmp/uploads/";
 
         Optional<Post> post = postRepository.findById(id);
         String imageName = post.get().getImageUrl();
