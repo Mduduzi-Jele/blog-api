@@ -14,9 +14,6 @@ RUN mvn clean package
 # Use a lightweight Alpine image as the base image for the final stage
 FROM openjdk:17-alpine
 
-ENV DB_USERNAME=school_site_gajv_user
-ENV DB_PASSWORD=HuxKdWQ37bhUT91uTAkfK85xbHz27uPf
-
 # Set the working directory inside the container
 WORKDIR /app
 
