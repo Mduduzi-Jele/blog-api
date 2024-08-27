@@ -1,8 +1,8 @@
 spring:
   datasource:
     url: jdbc:postgresql://dpg-cql2ri3qf0us73bt0980-a.oregon-postgres.render.com/school_site_gajv
-    username: school_site_gajv_user
-    password: HuxKdWQ37bhUT91uTAkfK85xbHz27uPf
+    username: ${DB_USERNAME}
+    password: ${DB_PASSWORD}
     driver-class-name: org.postgresql.Driver
 
   jpa:
@@ -14,12 +14,11 @@ spring:
 
 file:
   upload:
-    directory: /src/main/resources/static
+    directory: ${FILE_UPLOAD_DIRECTORY:/src/main/resources/static}
 
 # File Upload Configuration
-servlet:
-  multipart:
-    max-file-size: 100MB
-    max-request-size: 100MB
+spring.servlet.multipart:
+  max-file-size: 100MB
+  max-request-size: 100MB
 
 

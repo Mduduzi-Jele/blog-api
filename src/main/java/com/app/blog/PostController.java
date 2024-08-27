@@ -1,5 +1,8 @@
 package com.app.blog;
 
+import com.google.cloud.storage.Blob;
+import com.google.cloud.storage.Storage;
+import com.google.cloud.storage.StorageOptions;
 import jakarta.annotation.Resource;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -64,28 +67,43 @@ public class PostController {
     public Post createPost(@RequestPart("imageUrl") MultipartFile file,
                            @RequestParam("title") String title,
                            @RequestParam("description") String description,
-                           @RequestParam("dataTime") Date dataTime,
-                           @RequestParam("views") Integer views,
-                           @RequestParam("likes") Integer likes,
+//                           @RequestParam("dataTime") Date dataTime,
+//                           @RequestParam("views") Integer views,
+//                           @RequestParam("likes") Integer likes,
                            @PathVariable Long user_id) throws IOException {
 
-        String uploadDirectory = "/tmp/uploads/";
-        Path uploadPath = Paths.get(uploadDirectory);
+//        String uploadDirectory = "/tmp/uploads/";
+//        Path uploadPath = Paths.get(uploadDirectory);
+//
+//        // Ensure the directory exists
+//        if(!Files.exists(uploadPath))
+//            Files.createDirectories(uploadPath);
+//
+//        Path imagePath = uploadPath.resolve(file.getOriginalFilename());
+//        Files.write(imagePath, file.getBytes());
 
-        // Ensure the directory exists
-        if(!Files.exists(uploadPath))
-            Files.createDirectories(uploadPath);
+        //Initialize Firebase Storage client
+        Storage storage = StorageOptions.getDefaultInstance().getService();
+        String bucketName = "blog";
 
-        Path imagePath = uploadPath.resolve(file.getOriginalFilename());
-        Files.write(imagePath, file.getBytes());
+        //Upload the file to Firebase storage
+        String fileName = file.getOriginalFilename();
+        Blob blob = storage.create(Blob.newBuilder(bucketName, fileName)
+                .setContentType(file.getContentType())
+                .build(),
+                file.getBytes()
+        );
+
+        //Get the Url of the uploaded file
+        String fileUrl = blob.getMediaLink();
 
         Post myPost = new Post();
         myPost.setTitle(title);
         myPost.setDescription(description);
-        myPost.setImageUrl(file.getOriginalFilename());
-        myPost.setLikes(likes);
-        myPost.setViews(views);
-        myPost.setDataTime(dataTime);
+        myPost.setImageUrl(fileUrl);
+//        myPost.setLikes(likes);
+//        myPost.setViews(views);
+//        myPost.setDataTime(dataTime);
         // Find the User entity by user_id (foreign key)
         User user = userRepository.findById(user_id).orElse(null);
 
