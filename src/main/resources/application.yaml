@@ -1,8 +1,8 @@
 spring:
   datasource:
-    url: jdbc:postgresql://dpg-cql2ri3qf0us73bt0980-a/school_site_gajv
-    username: school_site_gajv_user
-    password: HuxKdWQ37bhUT91uTAkfK85xbHz27uPf
+    url: jdbc:postgresql://blog_jliz_user:w3oQN4y70ZRJDRxKkUgvIcfdS71WOLiZ@dpg-cranidtds78s73d7498g-a/blog_jliz
+    username: blog_jliz_user
+    password: w3oQN4y70ZRJDRxKkUgvIcfdS71WOLiZ
     driver-class-name: org.postgresql.Driver
 
   jpa:
