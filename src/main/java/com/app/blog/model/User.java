@@ -1,4 +1,4 @@
-package com.app.blog;
+package com.app.blog.model;
 import jakarta.persistence.*;
 
 import java.util.ArrayList;

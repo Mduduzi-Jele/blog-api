@@ -1,5 +1,8 @@
-package com.app.blog;
+package com.app.blog.controller;
 
+import com.app.blog.repository.UserRepository;
+import com.app.blog.service.UserService;
+import com.app.blog.model.User;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,7 +11,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 

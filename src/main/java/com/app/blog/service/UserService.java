@@ -1,5 +1,7 @@
-package com.app.blog;
+package com.app.blog.service;
 
+import com.app.blog.repository.UserRepository;
+import com.app.blog.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

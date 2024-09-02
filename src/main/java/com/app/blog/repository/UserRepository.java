@@ -1,5 +1,6 @@
-package com.app.blog;
+package com.app.blog.repository;
 
+import com.app.blog.model.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;
